@@ -8,12 +8,55 @@ import { faCubes } from "@fortawesome/free-solid-svg-icons";
 import { faBullhorn } from "@fortawesome/free-solid-svg-icons";
 import { faChartLine } from "@fortawesome/free-solid-svg-icons";
 import { faTasks } from "@fortawesome/free-solid-svg-icons";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function App() {
-  return (
+  const [cookies,setCookies]=React.useState(true)
+  const [leter,setLeter]=React.useState(false)
+  const [scroll,setScroll]=React.useState(true)
+  const handleCookies= () => {
+    setCookies(false)
+  }
+  const handleLeter= () => {
+    setLeter(false)
+    setScroll(false)
+    setInterval(() => {
+      setScroll(true);
+    }, 60000);
+  }
+
+  onscroll = () => {
+    setLeter(true)
+  }
+  return ( 
     <>
-      <div className="header">
+    {cookies ? 
+      <div className="sliding">
+        <div className="slidingContent">
+          <h1>By accessing and using this website, you acknowledge that you have read and
+              understand our Cookie Policy, Privacy Policy, and our Terms of Service.</h1>
+        </div>
+          <button id="slidingButton" onClick={handleCookies}>Got it</button>
+      </div> : 
+      <div className="sliding" style={{height:"0px"}}>
+      </div>
+    }
+    
+    {cookies ? 
+      <div className="header" style={{marginTop:"50px"}}>
+        <div className="headerLogo">
+          <img src={Logo} alt="logoHeader"/>
+        </div>
+        <div className="headerBody">
+          <h2 className="headText">Hello! I'm Fauzan Rachmatullah</h2>
+          <h1 className="headText">Consult, Design,and Develop Websites</h1>
+          <p className="headText">Have something great in mind? Feel free to contact me.</p>
+          <p className="headText">I'll help you to make it happen</p>
+          <button>LET'S MAKE CONTACT</button>
+        </div>
+      </div> : 
+      <div className="header" style={{marginTop:"0px"}}>
         <div className="headerLogo">
           <img src={Logo} alt="logoHeader"/>
         </div>
@@ -25,7 +68,7 @@ function App() {
           <button>LET'S MAKE CONTACT</button>
         </div>
       </div>
-
+    }
 
       <div className="content">
         <div className="highlightHeader">
@@ -116,7 +159,33 @@ function App() {
 
         </div>
         
-        <div class="footer-copyright text-center py-1" id="footerPage">
+        {leter && scroll ? 
+          <div className="newsleter" style={{transform:"scaleY(1)"}}>
+            <div id="newsleterHead">
+              <h1>Get latest updates in web technologies</h1>
+              <FontAwesomeIcon icon={faTimes} onClick={handleLeter}/>
+            </div>
+            <p>I write articles related to web technologies, such as design trends, development
+              tools, UI/UX case studies and reviews, and more. Sign up to my newsletter to get
+              them all.</p>
+            <form>
+              <input placeholder="Email Address"></input>
+              <button id="buttonNews">Count Me In</button>
+            </form>
+          </div> :
+          <div className="newsleter" style={{transform:"scaleY(0)"}}>
+            <h1>Get latest updates in web technologies</h1>
+            <p>I write articles related to web technologies, such as design trends, development
+              tools, UI/UX case studies and reviews, and more. Sign up to my newsletter to get
+              them all.</p>
+            <form>
+              <input placeholder="Email Address"></input>
+              <button id="buttonNews">Count Me In</button>
+            </form>
+        </div>
+        }
+        
+        <div className="footer-copyright text-center py-1" id="footerPage">
           <p>“​© 2020 Fauzan Rachmatullah. All rights reserved.​”</p>
         </div>
       </div>
