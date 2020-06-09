@@ -10,6 +10,8 @@ import { faChartLine } from "@fortawesome/free-solid-svg-icons";
 import { faTasks } from "@fortawesome/free-solid-svg-icons";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {Helmet} from 'react-helmet'
+
 
 function App() {
   const [cookies,setCookies]=React.useState(true)
@@ -31,6 +33,11 @@ function App() {
   }
   return ( 
     <>
+    <div>
+      <Helmet>
+        <title>​Fauzan Rachmatullah | Cermati.com Front-end Developer Entry Test</title>
+      </Helmet>
+    </div>
     {cookies ? 
       <div className="sliding">
         <div className="slidingContent">
